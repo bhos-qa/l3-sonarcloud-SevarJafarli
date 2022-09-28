@@ -1,24 +1,24 @@
+package permissionmanager;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import permissionmanager.PermissionManager;
-import permissionlevel.PermissionLevel;
 
 public class PermissionManagerTest {
-    
     @Test
+    @DisplayName("Permission Level Test")
     void testSetter(){
         PermissionManager permissionManager = new PermissionManager();
-        PermissionLevel testLevel = PermissionLevel.ADMIN;
-
-        //act
-        permissionManager.set(testLevel);
-
-        assertEquals(testLevel, permissionManager.get());
-
         
-        String level = permissionManager.getPermissionLevel();
-        assertEquals("ADMIN", level);
-    } 
+        assertEquals("USER", permissionManager.get());
+        permissionManager.set(PermissionLevel.ADMIN);
+        assertEquals("ADMIN", permissionManager.get());
+
+        permissionManager.set(PermissionLevel.DEVELOPER);
+        assertEquals("DEVELOPER", permissionManager.get());
+
+        permissionManager.set(PermissionLevel.USER);
+        assertEquals("USER", permissionManager.get());
+    }
 
 }
